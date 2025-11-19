@@ -1,0 +1,48 @@
+{
+  "economy": {
+    "start_minerals": 500,
+    "start_gas": 100,
+    "draw_cost": 100,
+    "round_clear_minerals": 300,
+    "sell_100m_for_gas": { "min": 40, "max": 120 },
+    "upgrade": { "base": 20, "step": 20, "multiplier": 1.125 },
+    "sell_prices": {
+      "normal": 50,
+      "rare": 100,
+      "epic": 200,
+      "legend": 400,
+      "god": 800
+    },
+    "terrazine": {
+      "boss_kills_grant": 1,
+      "max_boss_terra": 4,
+      "exchange": { "to_minerals": 400, "to_gas": 350 },
+      "buy_epic": { "terrazine": 1, "minerals": 100 }
+    }
+  },
+  "missions": [
+    { "id": "normal_8", "reward_minerals": 300 },
+    {
+      "id": "rare_pair",
+      "pairs": [["광전사","용기병"], ["바퀴","히드라리스크"]],
+      "reward_minerals": 300
+    },
+    { "id": "rare_8", "reward_minerals": 500 },
+    { "id": "epic_7", "reward_minerals": 0 },
+    { "id": "legend_5_voucher", "voucher": 1 },
+    { "id": "legend_8_voucher3", "voucher": 3 }
+  ],
+  "personal_missions": {
+    "cooldown_sec": 300.0,
+    "pm1": { "hp": 3300, "speed": 4.0, "reward_minerals": 100, "unlock_round": 4 },
+    "pm2": { "hp": 45000, "speed": 6.0, "reward_minerals": 200, "unlock_round": 10 },
+    "pm3": { "hp": 210000, "speed": 5.0, "reward_minerals": 500, "unlock_round": 20 }
+  },
+  "combine_rules": [
+    { "from": "normal", "to": "rare", "need": 2 },
+    { "from": "rare", "to": "epic", "need": 2 },
+    { "from": "epic", "to": "legend", "need": 2 },
+    { "from": "legend", "to": "god", "need": 2 }
+  ],
+  "balance": { "range_sc2_to_tiles": 0.5, "speed_scale": 1.0 }
+}

@@ -1,0 +1,9 @@
+tier,name,races_applied,primary_race,damage,shots,weapon_period,range,approx_bonus_dps
+legend,발리우스,T,T,527.0,1,1.0,7.2,87.75
+legend,워필드,T,T,585.0,1,1.04,7.2,118.8
+legend,모조,P,P,1200.0,1,1.2,7.2,0.0
+legend,모한다르,P,P,128.0,1,1.0,10.1,0.0
+legend,우룬,P,P,273.0,2,0.8,7.2,43.2
+legend,자가라,Z,Z,292.0,1,1.35,7.0,195.0
+legend,토라스크,Z,Z,325.0,1,0.5,7.0,0.0
+legend,메카 괴멸충,T;Z,T,858.0,1,1.3,7.2,210.0

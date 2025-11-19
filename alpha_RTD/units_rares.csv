@@ -1,0 +1,9 @@
+tier,name,races_applied,primary_race,damage,shots,weapon_period,range,approx_bonus_dps
+rare,불곰 특공대,T,T,81.9,1,1.2,7.0,0.0
+rare,사이클론,T,T,20.8,1,0.25,7.0,0.0
+rare,유령,T,T,75.0,1,1.12,8.0,0.0
+rare,광전사,P,P,39.0,2,0.96,5.0,0.0
+rare,용기병,P,P,99.0,1,1.44,7.0,0.0
+rare,전쟁 분광기,P,P,70.0,1,1.04,8.0,0.0
+rare,바퀴,Z,Z,115.0,1,1.6,6.0,0.0
+rare,히드라리스크,Z,Z,55.0,1,0.83,7.2,0.0
