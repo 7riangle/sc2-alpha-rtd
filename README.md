@@ -1,38 +1,58 @@
 # New Random Tower Defense (SC2 Arcade) – AlphaZero-style Prototype 🤖
 
 > **Status: Experimental Prototype**  
-> This code is work-in-progress and not a finished game AI.
-
-## Overview
-
-This repository contains a small **Python prototype** that applies an **AlphaZero-style search (MCTS + neural network)** to a **simplified, offline version of the StarCraft II arcade map _“New Random Tower Defense”_**.
-
-- It is **not** a general StarCraft II reinforcement learning agent.  
-- It does **not** play full SC2 matches or interact with the SC2 engine directly.  
-- Instead, it runs on a **custom grid-based environment** that approximates some of the decision structure of the arcade tower defense game (e.g. tower placement choices along fixed mob paths).
-
-The main goal of this project is to experiment with:
-- representing tower-defense states as a discrete grid,
-- using **Monte Carlo Tree Search (MCTS)** guided by a neural network,
-- and testing whether AlphaZero-style self-play can learn sensible tower placement policies in this toy setting.
-
-This repository should be viewed as a **personal experiment / learning project**, not as a polished or competitive AI.
+> This repository is an AI-assisted “vibe coding” experiment, not a finished or polished game AI.
 
 ---
 
-## Notes on Implementation
+## What This Is (and What It Is Not)
 
-- A fair amount of the boilerplate (e.g. MCTS scaffolding, environment wrappers) was written with the help of LLM-based tools, then manually edited.
-- My focus has been on:
-  - defining the basic **state representation** (grid, lanes, tower slots),
-  - sketching **reward signals**,
-  - and wiring up an AlphaZero-style loop at a prototype level.
-- The code is still rough:
-  - some parts may be redundant or unoptimized,
-  - there may be logical bugs in edge cases,
-  - and hyperparameters are not tuned.
+This repository contains a small **Python prototype** that applies an **AlphaZero-style search (MCTS + neural network)** to a **simplified, offline version** of the StarCraft II arcade map _“New Random Tower Defense”_.
 
-Feel free to treat this as a **starting point or reference**, not as a final implementation.
+To avoid confusion:
+
+- It is **not** a general StarCraft II reinforcement learning agent.  
+- It **does not** connect to the live SC2 client or play ladder games.  
+- It **does not** represent my low-level implementation skills in RL or deep learning.
+
+Instead, this code runs a **standalone grid-based simulation** that imitates some of the decision structure of the arcade tower defense game (e.g. tower placement along fixed mob paths), in order to test an AlphaZero-style loop in a toy setting.
+
+---
+
+## 🤖 AI-Assisted “Vibe Coding” Disclaimer
+
+This project was built as an explicit **AI-assisted “vibe coding” experiment**:
+
+- **Most of the concrete Python code was written by AI (LLMs).**  
+  - MCTS scaffolding  
+  - Environment wrappers  
+  - Training loop boilerplate  
+  - Model class structure  
+
+- **My contribution is primarily conceptual and architectural:**
+  - Describing the mechanics and constraints of **New Random Tower Defense**  
+  - Proposing **state and action representations** (grid, lanes, tower slots)  
+  - Designing and iterating on **reward ideas**  
+  - Steering and editing AI-generated code to roughly match those ideas  
+
+Please **do not** treat this repository as a portfolio of “pure hand-written RL code.”  
+It is closer to a log of how I used AI tools to prototype and explore an idea.
+
+---
+
+## Overview of the Prototype
+
+The main goals of this prototype are:
+
+- to represent tower-defense states on a **discrete grid**,  
+- to use **Monte Carlo Tree Search (MCTS)** guided by a neural network,  
+- and to see whether **AlphaZero-style self-play** can discover sensible tower placement policies in a simplified offline environment.
+
+It should be viewed as:
+
+- experimental,
+- unstable,
+- and primarily educational / exploratory.
 
 ---
 
@@ -49,28 +69,28 @@ Core files:
 
 - **`alpha_env.py`**  
   Custom environment wrapper:
-  - defines the grid-based state and action space,
-  - encodes a simplified tower-defense reward,
-  - tracks mob progress along lanes.
+  - defines the grid-based state and action space  
+  - encodes a simplified tower-defense reward  
+  - tracks mob progress along lanes  
 
 - **`alpha_model.py`**  
-  Neural network used by the MCTS policy/value guidance:
-  - policy head (action probabilities over legal tower placements),
-  - value head (estimated outcome of a state).
+  Neural network used by MCTS:
+  - policy head (action probabilities over legal tower placements)  
+  - value head (estimated outcome of a state)  
 
 - **`alpha_train.py`**  
   AlphaZero-style training loop:
-  - self-play episodes using MCTS + current network,
-  - storage of game histories,
-  - periodic training steps on collected data.
+  - runs self-play episodes using MCTS + current network  
+  - stores game histories  
+  - periodically updates the network from collected data  
 
 - **`alpha_rtd.py`**  
   Example script for running the agent in a specific Random Tower Defense scenario.
 
 - **`alpha_common.py`**  
   Shared helpers:
-  - loading grid/waypoint CSVs,
-  - common configuration utilities.
+  - loading grid/waypoint CSVs  
+  - configuration utilities  
 
 - **`config.json`**  
   Central configuration for hyperparameters (learning rate, number of simulations, etc.).
@@ -82,9 +102,9 @@ Data files:
 
 - **`grid with lane and slot.csv`**  
   Grid layout specification:
-  - lane paths,
-  - valid tower slots,
-  - blocked cells.
+  - lane paths  
+  - valid tower slots  
+  - blocked cells  
 
 ---
 
@@ -128,7 +148,7 @@ pip install matplotlib tqdm
 Currently, the code expects the CSV files to be in the **repository root directory**:
 
 - `mob_path_waypoints_v2.csv`  
-- `grid with lane and slot.csv`
+- `grid with lane and slot.csv`  
 
 If you move them into a `data/` folder, you will need to update the paths in `alpha_common.py` (and any other script that loads these files).
 
@@ -160,20 +180,21 @@ This runs the agent in a configured tower-defense scenario, using the current mo
 
 ## Current Limitations & To-Do
 
-- [ ] MCTS behaviour in terminal/edge states needs further debugging.  
-- [ ] Environment code should be refactored to support flexible relative paths (e.g. `data/` directory).  
-- [ ] Reward signals are very simple and may need redesign to avoid degenerate behaviour.  
-- [ ] Code structure could be simplified (some functions are longer than necessary).  
-- [ ] No formal evaluation or baselines are implemented yet.
+- MCTS behaviour in terminal / edge states needs further debugging.  
+- Environment code should be refactored to support flexible relative paths (e.g. `data/` directory).  
+- Reward signals are simple and may need redesign to avoid degenerate behaviour.  
+- Code structure could be simplified (some functions are longer than necessary).  
+- No formal evaluation or baselines are implemented yet.  
 
 ---
 
-## Scope
+## Scope & Intent
 
-To avoid confusion:
+To be explicit:
 
 - This project **does not** connect to the live StarCraft II client.  
-- It **does not** control units or play ladder games.  
-- It is a **standalone Python simulation** that borrows the basic idea of the **“New Random Tower Defense”** arcade map and applies an AlphaZero-style loop to a simplified grid version of that idea.
+- It **does not** control units or play online games.  
+- It is a **standalone Python simulation** that borrows the basic idea of the _“New Random Tower Defense”_ arcade map and applies an AlphaZero-style search to a simplified grid version of that idea.  
+- The code is **largely AI-generated**, based on my high-level descriptions of the game logic and reward structure.
 
 If you are interested in this kind of experiment, feel free to fork, modify, or strip down the code for your own tower-defense or grid-based toy environments.
